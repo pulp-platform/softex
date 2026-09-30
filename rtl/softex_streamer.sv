@@ -42,6 +42,7 @@ import softex_pkg::*;
 
     localparam int unsigned DW = `HCI_SIZE_GET_DW(Tcdm);
     localparam int unsigned EW = `HCI_SIZE_GET_EW(Tcdm);
+    localparam int unsigned FD = `HCI_SIZE_GET_FD(Tcdm);
 
     // this localparam is reused for all internal, non-ecc HCI interfaces
     localparam hci_size_parameter_t `HCI_SIZE_PARAM(Tcdm_no_ecc) = '{
@@ -51,7 +52,8 @@ import softex_pkg::*;
         UW:  DEFAULT_UW,
         IW:  DEFAULT_IW,
         EW:  DEFAULT_EW,
-        EHW: DEFAULT_EHW
+        EHW: DEFAULT_EHW,
+        FD:  FD
     };
 
     hwpe_stream_intf_stream #(
@@ -79,31 +81,36 @@ import softex_pkg::*;
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) tcdm_no_ecc (
         .clk    (   clk_i   )
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) ldst_tcdm [0:0] (
         .clk    (   clk_i   )
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) load_tcdm (
         .clk    (   clk_i   )
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) store_tcdm (
         .clk    (   clk_i   )
     );
 
     hci_core_intf #(
-        .DW ( DW  )
+        .DW ( DW  ),
+        .FD ( FD )
     ) mux_i_tcdm [1:0] (
         .clk    (   clk_i   )
     );
@@ -179,7 +186,8 @@ import softex_pkg::*;
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) load_mux_i_tcdm [1:0] (
         .clk    (   clk_i   )
     );
@@ -215,7 +223,8 @@ import softex_pkg::*;
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) load_fifo (
         .clk    (   clk_i   )
     );
@@ -278,7 +287,8 @@ import softex_pkg::*;
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) store_mux_i_tcdm [1:0] (
         .clk    (   clk_i   )
     );
@@ -314,7 +324,8 @@ import softex_pkg::*;
     );
 
     hci_core_intf #(
-        .DW ( DW )
+        .DW ( DW ),
+        .FD ( FD )
     ) store_fifo (
         .clk    (   clk_i   )
     );
@@ -342,8 +353,8 @@ import softex_pkg::*;
         .flags_o        (               ),
         .tcdm_target    (  store_fifo   ),
         .tcdm_initiator (  store_tcdm   )
-    ); 
-    
+    );
+
     hci_core_r_id_filter #(
         .`HCI_SIZE_PARAM(tcdm_target)   (   `HCI_SIZE_PARAM(Tcdm_no_ecc) )
     ) i_store_r_id_filter (

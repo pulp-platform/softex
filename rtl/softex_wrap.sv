@@ -19,7 +19,7 @@ import softex_pkg::*;
     parameter int unsigned              DW          = DATA_W        ,
     parameter  int unsigned             EW          = 0             ,
     parameter int unsigned              MP          = DW / 32       ,
-    parameter fpnew_pkg::fp_format_e    FPFORMAT    = FPFORMAT_IN   
+    parameter fpnew_pkg::fp_format_e    FPFORMAT    = FPFORMAT_IN
 ) (
     // global signals
     input  logic                      clk_i               ,
@@ -28,7 +28,7 @@ import softex_pkg::*;
     // events
     output logic [N_CORES-1:0][1:0]   evt_o               ,
     output logic                      busy_o              ,
-    // tcdm master ports  
+    // tcdm master ports
     output logic [      MP-1:0]       tcdm_req_o          ,
     input  logic [      MP-1:0]       tcdm_gnt_i          ,
     output logic [      MP-1:0][31:0] tcdm_add_o          ,
@@ -36,7 +36,7 @@ import softex_pkg::*;
     output logic [      MP-1:0][ 3:0] tcdm_be_o           ,
     output logic [      MP-1:0][31:0] tcdm_data_o         ,
     output logic [      MP-1:0]       tcdm_r_ready_o      ,
-    output logic [      MP-1:0][ 7:0] tcdm_id_o           ,    
+    output logic [      MP-1:0][ 7:0] tcdm_id_o           ,
     output logic [      EW-1:0]       tcdm_ecc_o          ,
     input  logic [      MP-1:0][31:0] tcdm_r_data_i       ,
     input  logic [      MP-1:0]       tcdm_r_valid_i      ,
@@ -178,7 +178,7 @@ import softex_pkg::*;
                 periph_r_data_o  <= periph.r_data;
                 periph_r_valid_o <= periph.r_valid;
                 periph_r_id_o    <= periph.r_id;
-                
+
                 // Other
                 busy_o           <= busy;
                 evt_o            <= evt;
@@ -196,7 +196,7 @@ import softex_pkg::*;
         .busy_o (   busy    ),
         .evt_o  (   evt     ),
         .tcdm   (   tcdm    ),
-        .periph (   periph  ) 
+        .periph (   periph  )
     );
 
 endmodule

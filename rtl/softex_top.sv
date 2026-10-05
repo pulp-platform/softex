@@ -25,7 +25,7 @@ import softex_pkg::*;
     output  logic [N_CORES - 1 : 0] [1 : 0] evt_o   ,
 
     hci_core_intf.initiator                 tcdm    ,
-    hwpe_ctrl_intf_periph.slave             periph  
+    hwpe_ctrl_intf_periph.slave             periph
 );
 
     localparam int unsigned WIDTH       = fpnew_pkg::fp_width(FPFORMAT);
@@ -121,7 +121,7 @@ import softex_pkg::*;
         .ctrl_i     (   datapath_ctrl                           ),
         .flags_o    (   datapath_flgs                           ),
         .stream_i   (   in_fifo_q                               ),
-        .stream_o   (   out_fifo_d                              )   
+        .stream_o   (   out_fifo_d                              )
     );
 
     hwpe_stream_fifo #(
@@ -142,11 +142,11 @@ import softex_pkg::*;
     ) i_streamer (
         .clk_i              (   clk_i           ),
         .rst_ni             (   rst_ni          ),
-        .clear_i            (   clear           ),  
-        .enable_i           (   '1              ), 
-        .in_stream_ctrl_i   (   stream_in_ctrl  ), 
+        .clear_i            (   clear           ),
+        .enable_i           (   '1              ),
+        .in_stream_ctrl_i   (   stream_in_ctrl  ),
         .out_stream_ctrl_i  (   stream_out_ctrl ),
-        .slot_in_ctrl_i     (   slot_in_ctrl    ), 
+        .slot_in_ctrl_i     (   slot_in_ctrl    ),
         .slot_out_ctrl_i    (   slot_out_ctrl   ),
         .in_cast_i          (   in_cast_ctrl    ),
         .out_cast_i         (   out_cast_ctrl   ),
@@ -154,11 +154,11 @@ import softex_pkg::*;
         .out_stream_flags_o (   stream_out_flgs ),
         .slot_in_flags_o    (   slot_in_flgs    ),
         .slot_out_flags_o   (   slot_out_flgs   ),
-        .in_stream_o        (   in_stream       ),  
+        .in_stream_o        (   in_stream       ),
         .out_stream_i       (   out_stream      ),
-        .slot_in_stream_o   (   slot_in_stream  ),  
-        .slot_out_stream_i  (   slot_out_stream ), 
-        .tcdm               (   tcdm            ) 
+        .slot_in_stream_o   (   slot_in_stream  ),
+        .slot_out_stream_i  (   slot_out_stream ),
+        .tcdm               (   tcdm            )
     );
 
 endmodule

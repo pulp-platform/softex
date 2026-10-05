@@ -194,6 +194,7 @@ import softex_pkg::*;
 
     hci_core_source #(
         .MISALIGNED_ACCESSES    (   1                            ),
+        .UPSTREAM_FIFO_DEPTH    (   2                            ),
         .`HCI_SIZE_PARAM(tcdm)  (   `HCI_SIZE_PARAM(Tcdm_no_ecc) )
     ) i_stream_in (
         .clk_i          (   clk_i               ),
@@ -209,6 +210,7 @@ import softex_pkg::*;
 
     hci_core_source #(
         .MISALIGNED_ACCESSES    (   1                            ),
+        .UPSTREAM_FIFO_DEPTH    (   0                            ),
         .`HCI_SIZE_PARAM(tcdm)  (   `HCI_SIZE_PARAM(Tcdm_no_ecc) )
     ) i_slot_in (
         .clk_i          (   clk_i               ),
@@ -289,7 +291,7 @@ import softex_pkg::*;
     hci_core_intf #(
         .DW ( DW ),
         .FD ( FD )
-    ) store_mux_i_tcdm [1:0] (
+    ) store_mux_i_tcdm [0:1] (
         .clk    (   clk_i   )
     );
 
